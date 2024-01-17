@@ -7,8 +7,6 @@
         <script>
             function validate() {
 
-                var isValidate = true;
-
                 var id  = document.getElementById('sid').nodeValue;
                 var name = document.getElementById('name').nodeValue;
                 var gen = document.querySelector('input[name="gen"]:checked');
@@ -17,18 +15,18 @@
 
                 if(id.trim() == "" || id.length > 2) {
                     document.getElementById('idError').innerHTML = "Enter valid id!";
-                    isValidate = false;
+                    return false;
                 }
                 if(name.trim() == "" || name.length > 10 || name.match(/^[A-Z] + $/)) {
                     document.getElementById('nameError').innerHTML = "Incorrect name";
-                    isValidate = false;
+                    return false;
                 }
                 if(!gen) {
                     document.getElementById('gen').innerHTML = "Select the gender!";
-                    isValidate = false;
+                    return false;
                 }
 
-                return isValidate;
+                return true;
             }
 
             function clearAll() {
