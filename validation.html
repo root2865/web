@@ -3,24 +3,73 @@
         <title>
             Student data collection
         </title>
+
+        <script>
+            function validate() {
+
+                var isValidate = true;
+
+                var id  = document.getElementById('sid').nodeValue;
+                var name = document.getElementById('name').nodeValue;
+                var gen = document.querySelector('input[name="gen"]:checked');
+                var add = document.getElementById('addr').nodeValue;
+                var qual = document.getElementById('qual').nodeValue;
+
+                if(id.trim() == "" || id.length > 2) {
+                    document.getElementById('idError').innerHTML = "Enter valid id!";
+                    isValidate = false;
+                }
+                if(name.trim() == "" || name.length > 10 || name.match(/^[A-Z] + $/)) {
+
+                    isValidate = false;
+                }
+                if(!gen) {
+                    document.getElementById('gen').innerHTML = "Select the gender!";
+                    isValidate = false;
+                }
+
+                return isValidate;
+            }
+
+            function clearAll() {
+                document.getElementById('sid').nodeValue = "";
+                document.getElementById('name').nodeValue = "";
+                document.getElementById('male').nodeValue = false;
+                document.getElementById('female').nodeValue = false;
+                document.getElementById('other').nodeValue = false;
+                document.getElementById('addr').nodeValue = "";
+            }
+        </script>
+
     </head>
 
     <body>
-        <form onsubmit="validate()">
+        <form>
             Student id: 
-            <input type="number" id="sid"> <span id="error"> </span>
+            <input type="number" id="sid"> <span id="idError"> </span> <br><br>
             
             Student Name: 
-            <input type="name" id="name"> <span id="error"></span>
+            <input type="name" id="name"> <span id="nameError"></span>  <br><br>
 
-            Gender: 
-            <input type="radio" name="gen" id="male" value="male"> 
-            <input type="radio" name="gen" id="female" value="female">
-            <input type="radio" name="gen" id="other" value="other">
-            <span id="error"></span>
+            Gender: <br>
+            <input type="radio" name="gen" id="male" value="male"> Male <br>
+            <input type="radio" name="gen" id="female" value="female"> Female <br>
+            <input type="radio" name="gen" id="other" value="other"> Other <br>
+            <span id="GenError"></span> <br><br>
 
             Address: 
-            <input type="textarea" id="addr"> <span id="error"> </span>
+            <input type="textarea" id="addr"> <span id="AddrError"> </span> <br><br>
+
+            Qualification:
+            <select name="Qualification" id="qual">
+                <option value="PG"> PG </option>
+                <option value="UG"> UG </option>
+                <option value="12th"> 12th </option>
+            </select> <br><br> 
+            <span id="QualError"></span>
+
+            <input type="submit" value="validate" onclick="validate()"> 
+            <input type="button" value="clear" onclick="clearAll()">
         </form>
     </body>
 </html>
