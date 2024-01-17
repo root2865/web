@@ -28,20 +28,25 @@
                     return false;
                 }
 				else 
-					document.getElementById('nameError').innerHTML = "Incorrect name";
+					document.getElementById('nameError').innerHTML = "";
 				
-                if(!male.checked && !female.checked) {
-                    document.getElementById('gen').innerHTML = "error";
-					alert("error");
+                if(rad1.checked==false && rad2.checked==false) {
+                    document.getElementById('GenError').innerHTML = "choose at least one";
                     return false;
                 }
-				else if(male.checked == true && female.checked == true) {
-                    document.getElementById('gen').innerHTML = "error";
-					alert("error");
+				else if(rad1.checked==true&&rad2.checked==true) {
+                    document.getElementById('GenError').innerHTML = "choose at least one";
                     return false;
                 }
 				else 
-					document.getElementById('gen').innerHTML = "";
+					document.getElementById('GenError').innerHTML = "";
+					
+				if(add.trim() == "" || add.length < 20 || add.match(/[#@.]+$/)) {
+					document.getElementById('AddrError').innerHTML = "Incorrect address";
+					return false;
+				}
+				else 
+					document.getElementById('AddrError').innerHTML = "";
 
                 return true;
             }
@@ -50,6 +55,8 @@
                 document.getElementById('sid').value = "";
                 document.getElementById('name').value = "";
                 document.getElementById('addr').value = "";
+				document.getElementById('rad1').checked = false;
+				document.getElementById('rad2').checked = false;
             }
         </script>
 
