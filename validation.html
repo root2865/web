@@ -7,32 +7,49 @@
         <script>
             function validate() {
 
-                var id  = document.getElementById('sid').nodeValue;
-                var name = document.getElementById('name').nodeValue;
-                var gen = document.querySelector('input[name="gen"]:checked');
-                var add = document.getElementById('addr').nodeValue;
-                var qual = document.getElementById('qual').nodeValue;
+                var id  = document.getElementById('sid').value;
+                var name = document.getElementById('name').value;
+                var male = document.getElementById('rad1');
+				var female = document.getElementById('rad2');
+                var add = document.getElementById('addr').value;
+                var qual = document.getElementById('qual').value;
+				
+				patt = /[a-z 0-9 #@.]+$/;
 
                 if(id.trim() == "" || id.length > 2) {
                     document.getElementById('idError').innerHTML = "Enter valid id!";
                     return false;
                 }
-                if(name.trim() == "" || name.length > 10 || name.match(/^[A-Z] + $/)) {
+				else
+					document.getElementById('idError').innerHTML = "";
+					
+                if(name.trim() == "" || name.length < 10 || name.match(patt)) {
                     document.getElementById('nameError').innerHTML = "Incorrect name";
                     return false;
                 }
-                if(!gen) {
-                    document.getElementById('gen').innerHTML = "Select the gender!";
+				else 
+					document.getElementById('nameError').innerHTML = "Incorrect name";
+				
+                if(!male.checked && !female.checked) {
+                    document.getElementById('gen').innerHTML = "error";
+					alert("error");
                     return false;
                 }
+				else if(male.checked == true && female.checked == true) {
+                    document.getElementById('gen').innerHTML = "error";
+					alert("error");
+                    return false;
+                }
+				else 
+					document.getElementById('gen').innerHTML = "";
 
                 return true;
             }
 
             function clearAll() {
-                document.getElementById('sid').nodeValue = "";
-                document.getElementById('name').nodeValue = "";
-                document.getElementById('addr').nodeValue = "";
+                document.getElementById('sid').value = "";
+                document.getElementById('name').value = "";
+                document.getElementById('addr').value = "";
             }
         </script>
 
@@ -47,9 +64,8 @@
             <input type="name" id="name"> <span id="nameError"></span>  <br><br>
 
             Gender: <br>
-            <input type="radio" name="gen" id="male" value="male"> Male <br>
-            <input type="radio" name="gen" id="female" value="female"> Female <br>
-            <input type="radio" name="gen" id="other" value="other"> Other <br>
+            <input type="radio" name="gen" id="rad1" value="male"> Male <br>
+            <input type="radio" name="gen" id="rad2" value="female"> Female <br>
             <span id="GenError"></span> <br><br>
 
             Address: 
