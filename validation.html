@@ -1,3 +1,26 @@
 <html>
-  
+    <head>
+        <title>
+            Student data collection
+        </title>
+    </head>
+
+    <body>
+        <form onsubmit="validate()">
+            Student id: 
+            <input type="number" id="sid"> <span id="error"> </span>
+            
+            Student Name: 
+            <input type="name" id="name"> <span id="error"></span>
+
+            Gender: 
+            <input type="radio" name="gen" id="male" value="male"> 
+            <input type="radio" name="gen" id="female" value="female">
+            <input type="radio" name="gen" id="other" value="other">
+            <span id="error"></span>
+
+            Address: 
+            <input type="textarea" id="addr"> <span id="error"> </span>
+        </form>
+    </body>
 </html>
