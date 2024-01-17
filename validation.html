@@ -20,7 +20,7 @@
                     isValidate = false;
                 }
                 if(name.trim() == "" || name.length > 10 || name.match(/^[A-Z] + $/)) {
-
+                    document.getElementById('nameError').innerHTML = "Incorrect name";
                     isValidate = false;
                 }
                 if(!gen) {
@@ -41,7 +41,7 @@
     </head>
 
     <body>
-        <form>
+        <form onsubmit="return validate()">
             Student id: 
             <input type="number" id="sid"> <span id="idError"> </span> <br><br>
             
@@ -65,7 +65,7 @@
             </select> <br><br> 
             <span id="QualError"></span>
 
-            <input type="submit" value="validate" onclick="validate()"> 
+            <input type="submit" value="validate"> 
             <input type="button" value="clear" onclick="clearAll()">
         </form>
     </body>
